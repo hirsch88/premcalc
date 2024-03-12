@@ -1,0 +1,73 @@
+{
+  "name": "car",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "premcalc",
+  "sourceRoot": "apps/car/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/car",
+        "index": "apps/car/src/index.html",
+        "browser": "apps/car/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/car/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/car/src/favicon.ico", "apps/car/src/assets"],
+        "styles": ["apps/car/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "car:build:production"
+        },
+        "development": {
+          "buildTarget": "car:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "car:build"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "car:build",
+        "staticFilePath": "dist/apps/car/browser"
+      }
+    }
+  }
+}
