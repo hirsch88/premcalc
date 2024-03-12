@@ -1,0 +1,10 @@
+{
+  "include": ["libs/**/src/**/*.ts"],
+  "exclude": [
+    "libs/**/src/test.ts",
+    "libs/**/src/**/*.spec.ts",
+    "libs/**/src/test-setup.ts",
+    "libs/**/src/**/*.test.ts",
+    "libs/**/jest.config.ts"
+  ]
+}

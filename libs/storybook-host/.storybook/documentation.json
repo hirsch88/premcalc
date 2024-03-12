@@ -1,0 +1,246 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "InsuranceTakerComponent",
+            "id": "component-InsuranceTakerComponent-3d18f15b52752d4f00e70c8b895c6fe9dadbae172ee10ef9b8826664ecf190743ca2da0accd1b956a226d7098cb43958484a15dea4cf18f8b3770245725ad4dd",
+            "file": "libs/insurance-taker/src/lib/insurance-taker.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "lib-insurance-taker",
+            "styleUrls": [],
+            "styles": [
+                ""
+            ],
+            "template": "<p>insurance-taker works! Bubu</p>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "fname",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nFirstname gugus\n",
+                    "description": "<p>Firstname gugus</p>\n",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nLastname gugus\n",
+                    "description": "<p>Lastname gugus</p>\n",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'lib-insurance-taker',\n  standalone: true,\n  imports: [CommonModule],\n  template: `<p>insurance-taker works! Bubu</p>`,\n  styles: ``,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class InsuranceTakerComponent {\n  /**\n   * Lastname gugus\n   */\n  @Input() name: string = '';\n  /**\n   * Firstname gugus\n    */\n  @Input() fname: string = '';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "\n",
+            "extends": []
+        },
+        {
+            "name": "StorybookHostComponent",
+            "id": "component-StorybookHostComponent-1a1fd817111fbad5677030a78c1f2dc45c6b7bd17bb4dc9b8c0ba17c3d331fdc733a98a0ff3986e0585714575c7ba18d5656685ac64d26aa45b812187c1925e2",
+            "file": "libs/storybook-host/src/lib/storybook-host/storybook-host.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "premcalc-storybook-host",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./storybook-host.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'premcalc-storybook-host',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './storybook-host.component.html',\n  styleUrl: './storybook-host.component.css',\n})\nexport class StorybookHostComponent {}\n",
+            "styleUrl": "./storybook-host.component.css",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>storybook-host works!</p>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    // task: {\n    //   id: '1',\n    //   title: 'Test Task',\n    //   state: 'TASK_INBOX',\n    // },\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<InsuranceTakerComponent>",
+                "defaultValue": "{\n  title: 'InsuranceTaker',\n  component: InsuranceTakerComponent,\n  excludeStories: /.*Data$/,\n  tags: ['autodocs'],\n  render: (args: InsuranceTakerComponent) => ({\n    props: {\n      ...args,\n      // onPinTask: actionsData.onPinTask,\n      // onArchiveTask: actionsData.onArchiveTask,\n    },\n    template: `<lib-insurance-taker ${argsToTemplate(args)}></lib-insurance-taker>`,\n  }),\n}"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<InsuranceTakerComponent>",
+                "file": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "libs/insurance-taker/src/lib/insurance-taker.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    // task: {\n    //   id: '1',\n    //   title: 'Test Task',\n    //   state: 'TASK_INBOX',\n    // },\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<InsuranceTakerComponent>",
+                    "defaultValue": "{\n  title: 'InsuranceTaker',\n  component: InsuranceTakerComponent,\n  excludeStories: /.*Data$/,\n  tags: ['autodocs'],\n  render: (args: InsuranceTakerComponent) => ({\n    props: {\n      ...args,\n      // onPinTask: actionsData.onPinTask,\n      // onArchiveTask: actionsData.onArchiveTask,\n    },\n    template: `<lib-insurance-taker ${argsToTemplate(args)}></lib-insurance-taker>`,\n  }),\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "libs/insurance-taker/src/lib/insurance-taker.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<InsuranceTakerComponent>",
+                    "file": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 16,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "libs/insurance-taker/src/lib/insurance-taker.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InsuranceTakerComponent",
+                "coveragePercent": 66,
+                "coverageCount": "2/3",
+                "status": "good"
+            },
+            {
+                "filePath": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/insurance-taker/src/lib/insurance-taker.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/storybook-host/src/lib/storybook-host/storybook-host.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StorybookHostComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

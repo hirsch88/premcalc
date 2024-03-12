@@ -5,5 +5,55 @@
   "prefix": "premcalc",
   "tags": [],
   "projectType": "library",
-  "targets": {}
+  "targets": {
+    "compodoc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx compodoc -e json -p tsconfig.docs.json -d {projectRoot}/.storybook",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "compodoc": true,
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "{projectRoot}/.storybook",
+          "-p",
+          "tsconfig.docs.json"
+        ]
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "compodoc": true,
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "{projectRoot}/.storybook",
+          "-p",
+          "tsconfig.docs.json"
+        ]
+      }
+    },
+    "static-storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "compodoc": true,
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "{projectRoot}/.storybook",
+          "-p",
+          "tsconfig.docs.json"
+        ]
+      }
+    }
+  }
 }
