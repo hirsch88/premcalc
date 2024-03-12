@@ -9,6 +9,8 @@ import {
   provideBaloiseDesignSystem,
 } from '@baloise/ds-angular';
 import { initializeI18n } from './i18n.initialize';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,5 +37,7 @@ export const appConfig: ApplicationConfig = {
       multi: true,
       deps: [TranslocoService, BalConfigService],
     },
+    provideStore(),
+    provideEffects(),
   ],
 };
