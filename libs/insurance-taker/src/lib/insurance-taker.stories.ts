@@ -6,7 +6,7 @@ import { argsToTemplate } from '@storybook/angular';
 import { InsuranceTakerComponent } from './insurance-taker.component';
 
 const meta: Meta<InsuranceTakerComponent> = {
-  title: 'InsuranceTaker',
+  title: 'Lib/InsuranceTaker',
   component: InsuranceTakerComponent,
   excludeStories: /.*Data$/,
   tags: ['autodocs'],

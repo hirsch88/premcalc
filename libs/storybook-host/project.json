@@ -16,6 +16,7 @@
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {
+        "styles": ["@baloise/ds-styles/css/all.css"],
         "compodoc": true,
         "compodocArgs": [
           "-e",
@@ -30,6 +31,7 @@
     "build-storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {
+        "styles": ["@baloise/ds-styles/css/all.css"],
         "compodoc": true,
         "compodocArgs": [
           "-e",
@@ -44,6 +46,7 @@
     "static-storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {
+        "styles": ["@baloise/ds-styles/css/all.css"],
         "compodoc": true,
         "compodocArgs": [
           "-e",
