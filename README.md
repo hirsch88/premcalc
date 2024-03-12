@@ -61,8 +61,6 @@ It will show tasks that you can run with Nx.
 - [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
 - [Follow us on Twitter](https://twitter.com/nxdevtools)
 
-
-
 nx g @nx/react:library storybook-host --directory=libs/storybook-host --bundler=none --unitTestRunner=none --projectNameAndRootFormat=as-provided
 
-nx g @nx/angular:library storybook-host --directory=libs/storybook-host --standalone  
+nx g @nx/angular:library storybook-host --directory=libs/storybook-host --standalone

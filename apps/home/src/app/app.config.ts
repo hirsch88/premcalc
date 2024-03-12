@@ -4,7 +4,10 @@ import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { TranslocoService, provideTransloco } from '@ngneat/transloco';
-import { BalConfigService, provideBaloiseDesignSystem } from '@baloise/ds-angular';
+import {
+  BalConfigService,
+  provideBaloiseDesignSystem,
+} from '@baloise/ds-angular';
 import { initializeI18n } from './i18n.initialize';
 
 export const appConfig: ApplicationConfig = {
@@ -19,7 +22,7 @@ export const appConfig: ApplicationConfig = {
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
-      loader: TranslocoHttpLoader
+      loader: TranslocoHttpLoader,
     }),
     provideBaloiseDesignSystem({
       defaults: {

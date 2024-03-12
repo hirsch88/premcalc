@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate } from '@storybook/angular';
 // import { action } from '@storybook/addon-actions';
@@ -16,7 +15,9 @@ const meta: Meta<InsuranceTakerComponent> = {
       // onPinTask: actionsData.onPinTask,
       // onArchiveTask: actionsData.onArchiveTask,
     },
-    template: `<lib-insurance-taker ${argsToTemplate(args)}></lib-insurance-taker>`,
+    template: `<lib-insurance-taker ${argsToTemplate(
+      args
+    )}></lib-insurance-taker>`,
   }),
 };
 

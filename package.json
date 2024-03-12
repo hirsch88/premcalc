@@ -2,7 +2,16 @@
   "name": "@premcalc/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "docs": "npx nx run storybook-host:storybook",
+    "car": "npx nx run car:serve",
+    "home": "npx nx run home:serve",
+    "build": "npx nx run-many -t build",
+    "build:force": "npx nx reset && npx nx run-many -t build",
+    "lint": "npx nx run-many -t lint",
+    "format": "npx nx format:write --all --end-of-line lf",
+    "format:check": "npx nx format:check --all --end-of-line lf"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.1.0",

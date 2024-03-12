@@ -18,6 +18,6 @@ export class InsuranceTakerComponent {
   @Input() name: string = '';
   /**
    * Firstname gugus
-    */
+   */
   @Input() fname: string = '';
 }
