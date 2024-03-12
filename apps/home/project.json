@@ -13,7 +13,7 @@
         "outputPath": "dist/apps/home",
         "index": "apps/home/src/index.html",
         "browser": "apps/home/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["apps/home/src/polyfills.ts"],
         "tsConfig": "apps/home/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/home/src/favicon.ico", "apps/home/src/assets"],
@@ -25,8 +25,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "3mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",

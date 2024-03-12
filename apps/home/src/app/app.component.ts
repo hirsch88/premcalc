@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { BalButton, BalHeading, BalLayoutBundle } from '@baloise/ds-angular';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, BalLayoutBundle, BalHeading, BalButton],
   selector: 'premcalc-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

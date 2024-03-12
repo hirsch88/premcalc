@@ -13,7 +13,7 @@
         "outputPath": "dist/apps/car",
         "index": "apps/car/src/index.html",
         "browser": "apps/car/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["apps/car/src/polyfills.ts"],
         "tsConfig": "apps/car/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/car/src/favicon.ico", "apps/car/src/assets"],
@@ -25,8 +25,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "3mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
