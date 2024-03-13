@@ -9,14 +9,13 @@ import { InsuranceTakerStore } from './insurance-taker.reducer';
 export class InsuranceTakerRepository {
   static selectAll = (state: InsuranceTakerStore) => state.insuranceTaker;
 
-  private readonly store = inject(Store)
+  private readonly store = inject(Store);
 
   get(): Observable<InsuranceTakerModel> {
-    return this.store.select(InsuranceTakerRepository.selectAll)
+    return this.store.select(InsuranceTakerRepository.selectAll);
   }
 
   update(model: InsuranceTakerModel) {
-    this.store.dispatch(InsuranceTakerActions.update({ model }))
+    this.store.dispatch(InsuranceTakerActions.update({ model }));
   }
-
 }

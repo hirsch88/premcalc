@@ -6,7 +6,10 @@ import { provideStore } from '@ngrx/store';
 // import { action } from '@storybook/addon-actions';
 
 import { InsuranceTakerDocComponent } from './insurance-taker.doc.component';
-import { createFirstNameField, createLastNameField } from '../store/insurance-taker.model';
+import {
+  createFirstNameField,
+  createLastNameField,
+} from '../store/insurance-taker.model';
 import { insuranceTakerReducer } from '../store/insurance-taker.reducer';
 
 const meta: Meta<InsuranceTakerDocComponent> = {
@@ -18,7 +21,7 @@ const meta: Meta<InsuranceTakerDocComponent> = {
     debug: true,
     model: {
       ...createFirstNameField('John', { label: 'Vorname' }),
-      ...createLastNameField('Doe', { label: 'Nachname' })
+      ...createLastNameField('Doe', { label: 'Nachname' }),
     },
   },
   render: (args: InsuranceTakerDocComponent) => ({
@@ -26,13 +29,13 @@ const meta: Meta<InsuranceTakerDocComponent> = {
       providers: [
         provideBaloiseDesignSystem({
           defaults: {
-            icons: balIcons
-          }
+            icons: balIcons,
+          },
         }),
         provideStore({
-          insuranceTaker: insuranceTakerReducer
+          insuranceTaker: insuranceTakerReducer,
         }),
-      ]
+      ],
     },
     props: {
       ...args,
@@ -53,7 +56,7 @@ export const Default: Story = {};
 export const OnlyLastName: Story = {
   args: {
     model: {
-      ...createLastNameField('Smith')
+      ...createLastNameField('Smith'),
     },
   },
 };

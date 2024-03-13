@@ -1,8 +1,12 @@
-import { Validators } from "@angular/forms"
-import { FormFieldGroup, ModelFieldFactory, createFormField } from "@premcalc/forms"
+import { Validators } from '@angular/forms';
+import {
+  FormFieldGroup,
+  ModelFieldFactory,
+  createFormField,
+} from '@premcalc/forms';
 
-export type InsuranceTakerModelKeys = 'firstName' | 'lastName'
-export type InsuranceTakerModel = FormFieldGroup<InsuranceTakerModelKeys>
+export type InsuranceTakerModelKeys = 'firstName' | 'lastName';
+export type InsuranceTakerModel = FormFieldGroup<InsuranceTakerModelKeys>;
 
 export const createFirstNameField: ModelFieldFactory = (val, opts) => ({
   firstName: createFormField(val, {
@@ -11,8 +15,8 @@ export const createFirstNameField: ModelFieldFactory = (val, opts) => ({
     ...opts,
     validators: [Validators.required, ...(opts?.validators || [])],
     asyncValidators: [...(opts?.asyncValidators || [])],
-  })
-})
+  }),
+});
 
 export const createLastNameField: ModelFieldFactory = (val, opts) => ({
   lastName: createFormField(val, {
@@ -21,12 +25,14 @@ export const createLastNameField: ModelFieldFactory = (val, opts) => ({
     ...opts,
     validators: [Validators.required, ...(opts?.validators || [])],
     asyncValidators: [...(opts?.asyncValidators || [])],
-  })
-})
+  }),
+});
 
-export const createInsuranceTakerModel = (model?: InsuranceTakerModel): InsuranceTakerModel => {
+export const createInsuranceTakerModel = (
+  model?: InsuranceTakerModel
+): InsuranceTakerModel => {
   return {
     ...model,
     ...createLastNameField(),
-  }
-}
+  };
+};

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  inject,
+} from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BalTabsBundle } from '@baloise/ds-angular';
@@ -26,37 +31,47 @@ import { InsuranceTakerRepository } from '../store/insurance-taker.repository';
 @Component({
   selector: 'lib-insurance-taker-doc',
   standalone: true,
-  imports: [InsuranceTakerComponent, ReactiveFormsModule, CommonModule, BalTabsBundle, DocsDebugConsoleComponent],
+  imports: [
+    InsuranceTakerComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    BalTabsBundle,
+    DocsDebugConsoleComponent,
+  ],
   template: `
     <div [formGroup]="formGroup">
       @if (model) {
-        <lib-insurance-taker [model]="model"></lib-insurance-taker>
+      <lib-insurance-taker [model]="model"></lib-insurance-taker>
       }
     </div>
-    <docs-debug-console [model]="model" [debug]="debug" [formGroup]="formGroup" [store]="repo.get() | async"></docs-debug-console>
+    <docs-debug-console
+      [model]="model"
+      [debug]="debug"
+      [formGroup]="formGroup"
+      [store]="repo.get() | async"
+    ></docs-debug-console>
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InsuranceTakerDocComponent {
+  /**
+   * @ignore
+   */
+  private readonly repo = inject(InsuranceTakerRepository);
 
   /**
-  * @ignore
-  */
-  private readonly repo = inject(InsuranceTakerRepository)
-
-  /**
-  * @ignore
-  */
-  readonly formGroup = new FormGroup({})
+   * @ignore
+   */
+  readonly formGroup = new FormGroup({});
 
   /**
    * The model of the insurance taker form.
    */
-  @Input() model!: InsuranceTakerModel
+  @Input() model!: InsuranceTakerModel;
 
   /**
    * Enable debug console to see store, form and model values
    */
-  @Input() debug = false
+  @Input() debug = false;
 }

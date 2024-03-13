@@ -1,7 +1,6 @@
-import { enableMapSet } from "immer"
+import { enableMapSet } from 'immer';
 
-enableMapSet()
+enableMapSet();
 
 export * from './lib/insurance-taker.component';
 export * from './lib/store';
-
