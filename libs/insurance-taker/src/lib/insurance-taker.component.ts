@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input } f
 import { CommonModule } from '@angular/common';
 import { BalFormBundle, BalFormGridBundle, BalNotification } from '@baloise/ds-angular';
 import { ControlContainer, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InsuranceTakerModel } from './store/insurance-taker.model';
+import { InsuranceTakerModel, createInsuranceTakerModel } from './store/insurance-taker.model';
 import { AttachToParentFormGroup, FormFieldControl, attachToParentFormGroup, syncModelWithFormFields } from './lib';
 import { InsuranceTakerRepository } from './store/insurance-taker.repository';
 import { produce } from 'immer';
@@ -14,22 +14,26 @@ import { produce } from 'immer';
   template: `
   @if (model()) {
     <bal-form-grid>
-      <bal-form-col>
-      <bal-field [disabled]="firstName().disabled">
-          <bal-field-label>{{ firstName().label }}</bal-field-label>
-          <bal-field-control>
-            <bal-input [formControl]="controls.firstName"></bal-input>
-          </bal-field-control>
-        </bal-field>
-      </bal-form-col>
-      <bal-form-col>
-        <bal-field [disabled]="lastName().disabled">
-        <bal-field-label>{{ lastName().label }}</bal-field-label>
-          <bal-field-control>
-            <bal-input [formControl]="controls.lastName"></bal-input>
-          </bal-field-control>
-        </bal-field>
-      </bal-form-col>
+      @if(firstName() && firstName().active) {
+        <bal-form-col>
+          <bal-field [disabled]="firstName().disabled">
+            <bal-field-label>{{ firstName().label }}</bal-field-label>
+            <bal-field-control>
+              <bal-input [formControl]="controls.firstName"></bal-input>
+            </bal-field-control>
+          </bal-field>
+        </bal-form-col>
+      }
+      @if(lastName() && lastName().active) {
+        <bal-form-col>
+          <bal-field [disabled]="lastName().disabled">
+          <bal-field-label>{{ lastName().label }}</bal-field-label>
+            <bal-field-control>
+              <bal-input [formControl]="controls.lastName"></bal-input>
+            </bal-field-control>
+          </bal-field>
+        </bal-form-col>
+      }
     </bal-form-grid>
   }`,
   styles: ``,
@@ -45,7 +49,7 @@ export class InsuranceTakerComponent implements AttachToParentFormGroup<Insuranc
     lastName: new FormControl('', [Validators.required])
   }
 
-  readonly model = input<InsuranceTakerModel>(new InsuranceTakerModel)
+  readonly model = input<InsuranceTakerModel>(createInsuranceTakerModel())
   readonly firstName = computed(() => this.model().firstName)
   readonly lastName = computed(() => this.model().lastName)
 
@@ -62,8 +66,12 @@ export class InsuranceTakerComponent implements AttachToParentFormGroup<Insuranc
 
   toModel = (): InsuranceTakerModel => {
     return produce({ ...this.model() }, draft => {
-      draft.firstName.value = this.controls.firstName.value || undefined
-      draft.lastName.value = this.controls.lastName.value || undefined
+      if (draft.firstName) {
+        draft.firstName.value = this.controls.firstName.value || undefined
+      }
+      if (draft.lastName) {
+        draft.lastName.value = this.controls.lastName.value || undefined
+      }
     })
   }
 

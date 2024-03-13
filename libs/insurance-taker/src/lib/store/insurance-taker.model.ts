@@ -1,6 +1,32 @@
-import { formField } from "../lib"
+import { Validators } from "@angular/forms"
+import { FormFieldGroup, ModelFieldFactory, createFormField } from "../lib"
 
-export class InsuranceTakerModel {
-  firstName = formField('', { name: 'firstName', disabled: false, label: 'First name' })
-  lastName = formField('', { name: 'lastName', disabled: false, label: 'Last name' })
+export type InsuranceTakerModelKeys = 'firstName' | 'lastName'
+export type InsuranceTakerModel = FormFieldGroup<InsuranceTakerModelKeys>
+
+export const createFirstNameField: ModelFieldFactory = (val, opts) => ({
+  firstName: createFormField(val, {
+    name: 'firstName',
+    label: 'First name',
+    ...opts,
+    validators: [Validators.required, ...(opts?.validators || [])],
+    asyncValidators: [...(opts?.asyncValidators || [])],
+  })
+})
+
+export const createLastNameField: ModelFieldFactory = (val, opts) => ({
+  lastName: createFormField(val, {
+    name: 'lastName',
+    label: 'Last name',
+    ...opts,
+    validators: [Validators.required, ...(opts?.validators || [])],
+    asyncValidators: [...(opts?.asyncValidators || [])],
+  })
+})
+
+export const createInsuranceTakerModel = (model?: InsuranceTakerModel): InsuranceTakerModel => {
+  return {
+    ...model,
+    ...createLastNameField(),
+  }
 }

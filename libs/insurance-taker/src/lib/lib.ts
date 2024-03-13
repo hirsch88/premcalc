@@ -1,5 +1,5 @@
 import { InputSignal, WritableSignal } from "@angular/core"
-import { AbstractControl, ControlContainer, FormControl, FormGroup } from "@angular/forms"
+import { AbstractControl, AsyncValidatorFn, ControlContainer, FormControl, FormGroup, ValidatorFn } from "@angular/forms"
 import { Subject, takeUntil } from "rxjs"
 
 export type FormFieldOptionsT = {
@@ -7,26 +7,34 @@ export type FormFieldOptionsT = {
   label: string
   disabled: boolean
   loading: boolean
-  hide: boolean
+  active: boolean
+  validators: ValidatorFn[],
+  asyncValidators: AsyncValidatorFn[]
 }
 
 export type FormFieldT<T> = FormFieldOptionsT & {
   value: T | undefined
 }
 
-export declare interface FormFieldFunction {
+export type ModelFieldFactory = <ValueT>(initialValue?: ValueT, options?: Partial<FormFieldOptionsT>) => { [key: string]: FormFieldT<ValueT> };
+
+export declare interface FormFieldFactory {
   <ValueT>(): FormFieldT<ValueT | undefined>;
   <ValueT>(initialValue: ValueT): FormFieldT<ValueT>;
   <ValueT>(initialValue: ValueT, options?: Partial<FormFieldOptionsT>): FormFieldT<ValueT>;
 }
 
-export const formField: FormFieldFunction = <ValueT>(initialValue?: ValueT, options = {}) => ({
+export type FormFieldGroup<TKey extends string> = Partial<Record<TKey, FormFieldT<unknown>>>
+
+export const createFormField: FormFieldFactory = <ValueT>(initialValue?: ValueT, options = {}) => ({
   value: initialValue,
   name: '',
   label: '',
   disabled: false,
   loading: false,
-  hide: false,
+  active: true,
+  validators: [],
+  asyncValidators: [],
   ...options,
 })
 
@@ -101,22 +109,22 @@ export function attachToParentFormGroup<TModel>({ controlContainer, formFields, 
 
 export type DocFormOutput = { [key: string]: { value: unknown, pristine: boolean, invalid: boolean, disabled: boolean } }
 
-export type DocFormComponent = {
-  controls: WritableSignal<DocFormOutput>
-  formGroup: FormGroup
-  // destroyed: Subject<void>
-}
+// export type DocFormComponent = {
+//   controls: WritableSignal<DocFormOutput>
+//   formGroup: WritableSignal<FormGroup>
+//   // destroyed: Subject<void>
+// }
 
-export function debugFormControls({ formGroup, controls }: DocFormComponent) {
-  const abstractControls: { [key: string]: AbstractControl<unknown, unknown> } = formGroup.controls
-  const output: DocFormOutput = {}
-  Object.keys(abstractControls).forEach(key => {
-    output[key] = {
-      value: abstractControls[key].value,
-      pristine: abstractControls[key].pristine,
-      invalid: abstractControls[key].invalid,
-      disabled: abstractControls[key].disabled,
-    }
-  })
-  controls.set(output)
-}
+// export function debugFormControls({ formGroup, controls }: DocFormComponent) {
+//   const abstractControls: { [key: string]: AbstractControl<unknown, unknown> } = formGroup().controls
+//   const output: DocFormOutput = {}
+//   Object.keys(abstractControls).forEach(key => {
+//     output[key] = {
+//       value: abstractControls[key].value,
+//       pristine: abstractControls[key].pristine,
+//       invalid: abstractControls[key].invalid,
+//       disabled: abstractControls[key].disabled,
+//     }
+//   })
+//   controls.set(output)
+// }

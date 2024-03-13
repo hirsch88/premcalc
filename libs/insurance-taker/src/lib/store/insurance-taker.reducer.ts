@@ -1,14 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 import { InsuranceTakerActions } from './insurance-taker.actions';
-import { InsuranceTakerModel } from './insurance-taker.model';
+import { InsuranceTakerModel, createInsuranceTakerModel } from './insurance-taker.model';
 
 type State = InsuranceTakerModel
 
-export interface InsuranceTakerStore {
+export type InsuranceTakerStore = {
   insuranceTaker: State;
 }
 
-export const initialState: State = new InsuranceTakerModel();
+export const initialState = createInsuranceTakerModel();
 
 export const insuranceTakerReducer = createReducer(
   initialState,
