@@ -17,7 +17,9 @@ import { InsuranceTakerRepository } from '../store/insurance-taker.repository';
  * It includes a user interface for inputting details like name, contact info, identification, financial status,
  * and relevant personal history.
  *
- * ```ts
+ * ### Create From
+ *
+ * ```typescript
  * const model = {
  *  ...createFirstNameField('John', { label: 'Vorname' }),
  *  ...createLastNameField('Doe', { label: 'Nachname' }),
@@ -27,6 +29,16 @@ import { InsuranceTakerRepository } from '../store/insurance-taker.repository';
  * ```html
  * <lib-insurance-taker [model]="model"></lib-insurance-taker>
  * ```
+ *
+ * ### Collect or Update the store
+ *
+ * ```typescript
+ * const insuranceTakerRepository = inject(InsuranceTakerRepository);
+ *
+ * insuranceTakerRepository.get()
+ * insuranceTakerRepository.update()
+ * ```
+ *
  */
 @Component({
   selector: 'lib-insurance-taker-doc',
