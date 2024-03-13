@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate } from '@storybook/angular';
 import * as balIcons from '@baloise/ds-icons';
+import { provideBaloiseDesignSystem } from '@baloise/ds-angular';
+import { provideStore } from '@ngrx/store';
 // import { action } from '@storybook/addon-actions';
 
 import { InsuranceTakerDocComponent } from './insurance-taker.doc.component';
 import { createFirstNameField, createLastNameField } from '../store/insurance-taker.model';
-import { provideBaloiseDesignSystem } from '@baloise/ds-angular';
-import { provideStore } from '@ngrx/store';
 import { insuranceTakerReducer } from '../store/insurance-taker.reducer';
 
 const meta: Meta<InsuranceTakerDocComponent> = {

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, effect, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { DocFormOutput } from '../lib';
+
+export type DocFormOutput = { [key: string]: { value: unknown, pristine: boolean, invalid: boolean, disabled: boolean } }
 
 @Component({
-  selector: 'lib-debug-console',
+  selector: 'docs-debug-console',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -29,7 +30,7 @@ import { DocFormOutput } from '../lib';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DebugConsoleComponent implements OnInit {
+export class DocsDebugConsoleComponent implements OnInit {
   readonly model = input({})
   readonly store = input({})
   readonly debug = input(false)

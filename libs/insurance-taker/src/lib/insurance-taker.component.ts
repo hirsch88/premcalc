@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input } f
 import { CommonModule } from '@angular/common';
 import { BalFormBundle, BalFormGridBundle, BalNotification } from '@baloise/ds-angular';
 import { ControlContainer, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InsuranceTakerModel, createInsuranceTakerModel } from './store/insurance-taker.model';
-import { AttachToParentFormGroup, FormFieldControl, attachToParentFormGroup, syncModelWithFormFields } from './lib';
-import { InsuranceTakerRepository } from './store/insurance-taker.repository';
+import { AttachToParentFormGroup, FormFieldControl, attachToParentFormGroup, syncModelWithFormFields } from '@premcalc/forms';
 import { produce } from 'immer';
+import { InsuranceTakerModel, createInsuranceTakerModel } from './store/insurance-taker.model';
+import { InsuranceTakerRepository } from './store/insurance-taker.repository';
 
 @Component({
   selector: 'lib-insurance-taker',

@@ -1,5 +1,5 @@
-import { InputSignal, WritableSignal } from "@angular/core"
-import { AbstractControl, AsyncValidatorFn, ControlContainer, FormControl, FormGroup, ValidatorFn } from "@angular/forms"
+import { InputSignal } from "@angular/core"
+import { AsyncValidatorFn, ControlContainer, FormControl, FormGroup, ValidatorFn } from "@angular/forms"
 import { Subject, takeUntil } from "rxjs"
 
 export type FormFieldOptionsT = {
@@ -106,25 +106,3 @@ export function attachToParentFormGroup<TModel>({ controlContainer, formFields, 
     destroyed.complete();
   }
 }
-
-export type DocFormOutput = { [key: string]: { value: unknown, pristine: boolean, invalid: boolean, disabled: boolean } }
-
-// export type DocFormComponent = {
-//   controls: WritableSignal<DocFormOutput>
-//   formGroup: WritableSignal<FormGroup>
-//   // destroyed: Subject<void>
-// }
-
-// export function debugFormControls({ formGroup, controls }: DocFormComponent) {
-//   const abstractControls: { [key: string]: AbstractControl<unknown, unknown> } = formGroup().controls
-//   const output: DocFormOutput = {}
-//   Object.keys(abstractControls).forEach(key => {
-//     output[key] = {
-//       value: abstractControls[key].value,
-//       pristine: abstractControls[key].pristine,
-//       invalid: abstractControls[key].invalid,
-//       disabled: abstractControls[key].disabled,
-//     }
-//   })
-//   controls.set(output)
-// }

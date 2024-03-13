@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@premcalc/docs": ["libs/docs/src/index.ts"],
+      "@premcalc/forms": ["libs/forms/src/index.ts"],
       "@premcalc/insurance-taker": ["libs/insurance-taker/src/index.ts"],
       "@premcalc/storybook-host": ["libs/storybook-host/src/index.ts"]
     }

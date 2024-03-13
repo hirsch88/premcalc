@@ -1,5 +1,5 @@
 import { Validators } from "@angular/forms"
-import { FormFieldGroup, ModelFieldFactory, createFormField } from "../lib"
+import { FormFieldGroup, ModelFieldFactory, createFormField } from "@premcalc/forms"
 
 export type InsuranceTakerModelKeys = 'firstName' | 'lastName'
 export type InsuranceTakerModel = FormFieldGroup<InsuranceTakerModelKeys>

@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BalTabsBundle } from '@baloise/ds-angular';
+import { DocsDebugConsoleComponent } from '@premcalc/docs';
 import { InsuranceTakerModel } from '../store/insurance-taker.model';
 import { InsuranceTakerComponent } from '../insurance-taker.component';
 import { InsuranceTakerRepository } from '../store/insurance-taker.repository';
-import { DebugConsoleComponent } from './debug-console.component';
 
 /**
  * The **InsuranceTaker** `<lib-insurance-taker>` component gathers and validates **personal information from individuals seeking insurance**.
@@ -26,14 +26,14 @@ import { DebugConsoleComponent } from './debug-console.component';
 @Component({
   selector: 'lib-insurance-taker-doc',
   standalone: true,
-  imports: [InsuranceTakerComponent, ReactiveFormsModule, CommonModule, BalTabsBundle, DebugConsoleComponent],
+  imports: [InsuranceTakerComponent, ReactiveFormsModule, CommonModule, BalTabsBundle, DocsDebugConsoleComponent],
   template: `
     <div [formGroup]="formGroup">
       @if (model) {
         <lib-insurance-taker [model]="model"></lib-insurance-taker>
       }
     </div>
-    <lib-debug-console [model]="model" [debug]="debug" [formGroup]="formGroup" [store]="repo.get() | async"></lib-debug-console>
+    <docs-debug-console [model]="model" [debug]="debug" [formGroup]="formGroup" [store]="repo.get() | async"></docs-debug-console>
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
