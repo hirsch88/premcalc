@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // disable patching requestAnimationFrame
 (window as any).__Zone_disable_requestAnimationFrame = true;
 
