@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/storybook-host/src",
   "prefix": "premcalc",
-  "tags": [],
+  "tags": ["type:docs"],
   "projectType": "library",
   "targets": {
     "compodoc": {

@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BalFormBundle, BalFormGridBundle, BalNotification } from '@baloise/ds-angular';
-import { ControlContainer, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ControlContainer, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AttachToParentFormGroup, FormFieldControl, attachToParentFormGroup, syncModelWithFormFields } from '@premcalc/forms';
 import { produce } from 'immer';
-import { InsuranceTakerModel, createInsuranceTakerModel } from './store/insurance-taker.model';
+import { InsuranceTakerModel, InsuranceTakerModelKeys, createInsuranceTakerModel } from './store/insurance-taker.model';
 import { InsuranceTakerRepository } from './store/insurance-taker.repository';
 
 @Component({
@@ -19,7 +19,7 @@ import { InsuranceTakerRepository } from './store/insurance-taker.repository';
           <bal-field [disabled]="firstName().disabled">
             <bal-field-label>{{ firstName().label }}</bal-field-label>
             <bal-field-control>
-              <bal-input [formControl]="controls.firstName"></bal-input>
+              <bal-input [formControl]="firstName().control"></bal-input>
             </bal-field-control>
           </bal-field>
         </bal-form-col>
@@ -29,7 +29,7 @@ import { InsuranceTakerRepository } from './store/insurance-taker.repository';
           <bal-field [disabled]="lastName().disabled">
           <bal-field-label>{{ lastName().label }}</bal-field-label>
             <bal-field-control>
-              <bal-input [formControl]="controls.lastName"></bal-input>
+              <bal-input [formControl]="lastName().control"></bal-input>
             </bal-field-control>
           </bal-field>
         </bal-form-col>
@@ -43,15 +43,11 @@ export class InsuranceTakerComponent implements AttachToParentFormGroup<Insuranc
   private readonly insuranceTakerRepository = inject(InsuranceTakerRepository)
   readonly controlContainer = inject(ControlContainer)
 
-  readonly formFields = new Map<string, FormFieldControl>()
-  readonly controls = {
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required])
-  }
+  readonly formFields = signal(new Map<InsuranceTakerModelKeys, FormFieldControl>())
 
   readonly model = input<InsuranceTakerModel>(createInsuranceTakerModel())
-  readonly firstName = computed(() => this.model().firstName)
-  readonly lastName = computed(() => this.model().lastName)
+  readonly firstName = computed(() => this.formFields().get('firstName'))
+  readonly lastName = computed(() => this.formFields().get('lastName'))
 
   constructor() {
     effect((onCleanup) => {
@@ -67,10 +63,10 @@ export class InsuranceTakerComponent implements AttachToParentFormGroup<Insuranc
   toModel = (): InsuranceTakerModel => {
     return produce({ ...this.model() }, draft => {
       if (draft.firstName) {
-        draft.firstName.value = this.controls.firstName.value || undefined
+        draft.firstName.value = this.formFields().get('firstName')?.control.value || undefined
       }
       if (draft.lastName) {
-        draft.lastName.value = this.controls.lastName.value || undefined
+        draft.lastName.value = this.formFields().get('lastName')?.control.value || undefined
       }
     })
   }

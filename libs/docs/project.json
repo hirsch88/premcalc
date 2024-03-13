@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/docs/src",
   "prefix": "docs",
-  "tags": [],
+  "tags": ["type:docs", "type:lib"],
   "projectType": "library",
   "targets": {
     "build": {

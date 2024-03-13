@@ -1,4 +1,4 @@
-import { InputSignal } from "@angular/core"
+import { InputSignal, WritableSignal } from "@angular/core"
 import { AsyncValidatorFn, ControlContainer, FormControl, FormGroup, ValidatorFn } from "@angular/forms"
 import { Subject, takeUntil } from "rxjs"
 
@@ -57,22 +57,25 @@ export const combineToFieldControl = (formField: FormFieldT<unknown>, control: F
 
 export type AttachToParentFormGroup<TModel> = {
   readonly model: InputSignal<TModel>
-  readonly controls: { [key: string]: FormControl }
   readonly controlContainer: ControlContainer
-  readonly formFields: Map<string, FormFieldControl>,
+  readonly formFields: WritableSignal<Map<string, FormFieldControl>>,
   formChanged: () => void
 }
 
-export function syncModelWithFormFields<TModel>({ model, formFields, controls }: AttachToParentFormGroup<TModel>): void {
+export function syncModelWithFormFields<TModel>({ model, formFields }: AttachToParentFormGroup<TModel>): void {
+  const newMap = new Map()
   const keys = Object.keys(model() as object)
   for (let index = 0; index < keys.length; index++) {
     const key = keys[index];
-    const data = (model() as never)[key]
-    const control = (controls as never)[key]
-    if (data && control) {
-      formFields.set(key, combineToFieldControl(data, control))
+    const data = (model() as never)[key] as { value: unknown, validators: [], asyncValidators: [] }
+    if (data) {
+      newMap.set(key, combineToFieldControl(data as never, new FormControl(data.value, {
+        validators: data.validators,
+        asyncValidators: data.asyncValidators,
+      })))
     }
   }
+  formFields.set(newMap)
 }
 
 export function attachToParentFormGroup<TModel>({ controlContainer, formFields, formChanged }: AttachToParentFormGroup<TModel>): () => void {
@@ -81,7 +84,7 @@ export function attachToParentFormGroup<TModel>({ controlContainer, formFields, 
     const parentFormGroup = controlContainer.control as FormGroup;
 
     if (parentFormGroup) {
-      formFields.forEach(field => {
+      formFields().forEach(field => {
         if (field.name && field.control) {
           if (!parentFormGroup.get(field.name)) {
             parentFormGroup.addControl(field.name, field.control)
