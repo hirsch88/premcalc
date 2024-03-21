@@ -1,23 +1,23 @@
 {
-  "name": "docs",
+  "name": "location",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/docs/src",
-  "prefix": "docs",
-  "tags": ["type:docs", "type:lib", "scope:shared"],
+  "sourceRoot": "libs/location/src",
+  "prefix": "lib",
+  "tags": ["type:lib", "scope:shared"],
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
+      "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/docs/ng-package.json"
+        "project": "libs/location/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "libs/docs/tsconfig.lib.prod.json"
+          "tsConfig": "libs/location/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "libs/docs/tsconfig.lib.json"
+          "tsConfig": "libs/location/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"

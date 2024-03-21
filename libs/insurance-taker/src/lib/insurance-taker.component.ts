@@ -18,11 +18,6 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  AttachToParentFormGroup,
-  FormFieldControl,
-  attachToParentFormGroup,
-} from '@premcalc/forms';
 import { produce } from 'immer';
 import {
   InsuranceTakerModel,
@@ -30,6 +25,11 @@ import {
   createInsuranceTakerModel,
 } from './store/insurance-taker.model';
 import { InsuranceTakerRepository } from './store/insurance-taker.repository';
+import {
+  AttachToParentFormGroup,
+  FormFieldControl,
+  attachToParentFormGroup,
+} from '@premcalc/forms';
 
 @Component({
   selector: 'lib-insurance-taker',
@@ -45,25 +45,25 @@ import { InsuranceTakerRepository } from './store/insurance-taker.repository';
   ],
   template: ` @if (model()) {
     <bal-form-grid>
-      @if(firstName() && firstName().active) {
+      @if(firstName(); as firstName) { @if(firstName.active) {
       <bal-form-col>
-        <bal-field [disabled]="firstName().disabled">
-          <bal-field-label>{{ firstName().label }}</bal-field-label>
+        <bal-field [disabled]="firstName.disabled">
+          <bal-field-label>{{ firstName.label }}</bal-field-label>
           <bal-field-control>
-            <bal-input [formControl]="firstName().control"></bal-input>
+            <bal-input [formControl]="firstName.control"></bal-input>
           </bal-field-control>
         </bal-field>
       </bal-form-col>
-      } @if(lastName() && lastName().active) {
+      } } @if(lastName(); as lastName) { @if(lastName.active) {
       <bal-form-col>
-        <bal-field [disabled]="lastName().disabled">
-          <bal-field-label>{{ lastName().label }}</bal-field-label>
+        <bal-field [disabled]="lastName.disabled">
+          <bal-field-label>{{ lastName.label }}</bal-field-label>
           <bal-field-control>
-            <bal-input [formControl]="lastName().control"></bal-input>
+            <bal-input [formControl]="lastName.control"></bal-input>
           </bal-field-control>
         </bal-field>
       </bal-form-col>
-      }
+      } }
     </bal-form-grid>
     }`,
   styles: ``,
@@ -98,11 +98,11 @@ export class InsuranceTakerComponent
   toModel = (): InsuranceTakerModel => {
     return produce({ ...this.model() }, (draft) => {
       if (draft.firstName) {
-        draft.firstName.value =
+        draft.firstName.initialValue =
           this.formFields().get('firstName')?.control.value || undefined;
       }
       if (draft.lastName) {
-        draft.lastName.value =
+        draft.lastName.initialValue =
           this.formFields().get('lastName')?.control.value || undefined;
       }
     });

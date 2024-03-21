@@ -1,0 +1,24 @@
+{
+  "name": "car-mock",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/car-mock/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "car-mock:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "car-mock:build:development"
+        },
+        "production": {
+          "buildTarget": "car-mock:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

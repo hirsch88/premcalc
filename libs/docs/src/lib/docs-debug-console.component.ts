@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { BalTabsBundle } from '@baloise/ds-angular';
 
 export type DocFormOutput = {
   [key: string]: {
@@ -21,7 +22,7 @@ export type DocFormOutput = {
 @Component({
   selector: 'docs-debug-console',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BalTabsBundle],
   template: `
     @if(debug()){
     <div
@@ -53,7 +54,7 @@ export type DocFormOutput = {
 })
 export class DocsDebugConsoleComponent implements OnInit {
   readonly model = input({});
-  readonly store = input({});
+  readonly store = input<unknown | null | undefined>({});
   readonly debug = input(false);
   readonly formGroup = input<FormGroup>();
 
@@ -78,21 +79,29 @@ export class DocsDebugConsoleComponent implements OnInit {
   }
 
   debugFormControls() {
-    const fg = this.formGroup();
-    if (fg) {
-      const abstractControls: {
-        [key: string]: AbstractControl<unknown, unknown>;
-      } = fg.controls;
-      const output: DocFormOutput = {};
-      Object.keys(abstractControls).forEach((key) => {
-        output[key] = {
-          value: abstractControls[key].value,
-          pristine: abstractControls[key].pristine,
-          invalid: abstractControls[key].invalid,
-          disabled: abstractControls[key].disabled,
-        };
-      });
-      this.controls.set(output);
+    try {
+      const fg = this.formGroup();
+      if (fg) {
+        const abstractControls: {
+          [key: string]: AbstractControl<unknown, unknown>;
+        } = fg.controls;
+        const output: DocFormOutput = {};
+        Object.keys(abstractControls).forEach((key) => {
+          const ctrl = abstractControls[key]
+          if (ctrl) {
+            output[key] = {
+              value: ctrl.value,
+              pristine: ctrl.pristine,
+              invalid: ctrl.invalid,
+              disabled: ctrl.disabled,
+            };
+          }
+
+        });
+        this.controls.set(output);
+      }
+    } catch (error) {
+      console.warn(error)
     }
   }
 }
